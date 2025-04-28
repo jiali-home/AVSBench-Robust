@@ -9,7 +9,7 @@ This repository provides the official dataset generation, training, and evaluati
 Audio-Visual Segmentation (AVS) aims to segment sounding objects in visual scenes. However, many models exhibit a "visual bias", segmenting visually salient objects regardless of whether they are actually producing sound.
 AVSBench-Robust is designed to rigorously evaluate the robustness of AVS models against this bias. It extends the original AVSBench dataset by incorporating challenging **negative audio scenarios** for each video, including:
 * Silence 
-* Ambient Noise
+* Noise
 * Off-screen Sounds
   
 This allows for a comprehensive assessment of whether models truly integrate audio-visual cues or rely solely on visual information.
