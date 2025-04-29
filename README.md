@@ -99,6 +99,11 @@ bash test_s4.sh
 bash test_ms3.sh 
 ```
 
+The **False Positive Rate (FPR)** metric is calculated directly in the evaluation code.  
+You can find the implementation here:  
+👉 [AVSegFormer/scripts/s4/test.py, Line 15](https://github.com/jiali-home/AVSBench-Robust/blob/67c0f2e750cc268bb0e85e666d94b2b28e5fb7bd/training_evaluation/code/AVSegFormer/scripts/s4/test.py#L15)
+
+The G-mIoU, G-F and G-FPR metrics are manually aggregated and calculated based on the exported results, using Excel. 
 
 ### Citation
 If you find AVSBench-Robust useful for your research, please cite:
