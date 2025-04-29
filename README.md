@@ -21,7 +21,48 @@ This repository provides all necessary resources for:
 * Training AVS models on robust datasets
 * Evaluating model robustness using newly designed metrics
 
-### Dataset Generation
+### 🛠️ Get Started
+
+#### 1. Environments
+```shell
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+
+source miniconda3/bin/activate
+conda init --all
+
+conda create -n segformer python=3.10 pip
+conda activate segformer
+conda install pytorch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 pytorch-cuda=12.1 -c pytorch -c nvidia
+conda install -c conda-forge gcc=12.4.0 gxx=12.4.0
+pip install mmcv==2.2.0 -f https://download.openmmlab.com/mmcv/dist/cu121/torch2.4/index.html
+pip install pandas, timm, resampy, soundfile, gdown, nvitop, pydub, librosa
+pip install "numpy<2"
+
+# build MSDeformAttention
+
+git clone https://github.com/LONZARK/AVSegformer.git
+cd AVSegformer/ops
+sh make.sh
+```
+
+
+### 2. Dataset preparation
+
+#### AVSBench dataset
+
+Please refer to the link [AVSBenchmark](https://github.com/OpenNLPLab/AVSBench) to download the datasets. You can put the data under `data` folder or rename your own folder. Remember to modify the path in config files. The `data` directory is as bellow:
+```
+|--data
+   |--AVSS
+   |--Multi-sources
+   |--Single-source
+```
+
+#### AVSBench-Robust dataset: 
+
 Requirements Before Running:
 - The original AVSBench datasets ([download instructions here](https://github.com/OpenNLPLab/AVSBench))
 - `metadata.csv` from the AVSS dataset (also available [here](https://github.com/OpenNLPLab/AVSBench))
@@ -35,17 +76,28 @@ Arguments
 - `--dataset`: Select the target dataset (s4 or ms3).
 - `--seed`: Random seed for reproducibility. We use 42 in our paper.
 
-### Training
-_Coming soon._
-We will release training scripts used to reproduce the results in the paper, including:
-- Training with robustness augmentation
-- Details on optimizer, learning rate, batch size, and hardware used
 
-  
-### Evaluation
-_Coming soon._
-We will provide evaluation scripts to measure:
-- Robustness under Negative Audio (False Positive Rate, G-mIoU and G-F)
+### 3. pretrained backbones
+
+The pretrained ResNet50/PVT-v2-b5 (vision) and VGGish (audio) backbones can be downloaded from [here](https://drive.google.com/drive/folders/1386rcFHJ1QEQQMF6bV1rXJTzy8v26RTV?usp=sharing) and placed to the directory `pretrained_backbones`.
+
+
+### 4.Train
+Train on [AVSegformer](https://github.com/vvvb-github/AVSegFormer/blob/master/README.md?plain=1) Baseline
+```shell
+cd AVSegformer
+bash train_s4.sh
+bash train_ms3.sh
+```
+
+###  5. Test
+Test on [AVSegformer](https://github.com/vvvb-github/AVSegFormer/blob/master/README.md?plain=1) Baseline
+
+```shell
+cd AVSegformer
+bash test_s4.sh 
+bash test_ms3.sh 
+```
 
 
 ### Citation
