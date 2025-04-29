@@ -1,0 +1,2 @@
+CUDA_VISIBLE_DEVICES=0 python scripts/s4/train.py "config/s4/ood_AVSegFormer_pvt2_s4.py"\
+ --log_dir 'path_to_log_dir' --checkpoint_dir 'path_to_checkpoint_dir' --misaligned_percentage 10 --model AVSegFormer_robust
