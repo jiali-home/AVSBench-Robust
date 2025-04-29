@@ -33,7 +33,7 @@ python audio_processing.py --dataset [s4|ms3] --seed [random_seed]
 ```
 Arguments
 - `--dataset`: Select the target dataset (s4 or ms3).
-- `--seed`: Random seed for reproducibility.
+- `--seed`: Random seed for reproducibility. We use 42 in our paper.
 
 ### Training
 _Coming soon._
